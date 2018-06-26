@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <title>智运 | 无车承运人</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <link rel="stylesheet" href="<%= htmlWebpackPlugin.files.css[0] %>">
+    <script type="text/javascript" src="/config.js"></script>
+    <script>
+        setTimeout(function () {
+            //判断是否是IE浏览器，包括Edge浏览器  
+            function IEVersion()  
+            {  
+                var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串  
+                var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE浏览器  
+                var isEdge = userAgent.indexOf("Windows NT 6.1; Trident/7.0;") > -1 && !isIE; //判断是否IE的Edge浏览器  
+                if(isIE)  
+                {  
+                    var reIE = new RegExp("MSIE (\\d+\\.\\d+);");  
+                    reIE.test(userAgent);  
+                    var fIEVersion = parseFloat(RegExp["$1"]);  
+                    if(fIEVersion == 7)  
+                    { return "IE7";}  
+                    else if(fIEVersion == 8)  
+                    { return "IE8";}  
+                    else if(fIEVersion == 9)  
+                    { return "IE9";}  
+                    else if(fIEVersion == 10)  
+                    { return "IE10";}  
+                    else if(fIEVersion == 11)  
+                    { return "IE11";}  
+                    else  
+                    { return "0"}//IE版本过低  
+                }  
+                else if(isEdge)  
+                {  
+                    return "Edge";  
+                }  
+                else  
+                {  
+                    return "-1";//非IE  
+                }  
+            }  
+    
+            if (IEVersion() == "IE7" || IEVersion() == "IE8" || IEVersion() == "IE9" || IEVersion() == "IE10" || IEVersion() == "0") {
+                //alert("您的浏览器无法正常浏览当前网站，请使用最新版Chrome浏览器或在最新版360、QQ等浏览器的极速模式下进行浏览！");
+                setTimeout(function () {
+                    location.href = "http://i-tms.cn/Login/NotSupport?returnUrl=" + this.location.href;
+                });
+            }
+        });
+    </script>
+</head>
+
+<body>
+    <div id="app"></div>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[0] %>"></script>
+    <script type="text/javascript" src="<%= htmlWebpackPlugin.files.js[1] %>"></script>
+</body>
+</html>
